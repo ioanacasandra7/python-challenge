@@ -2,7 +2,7 @@ import os
 import csv
 
 #Open and store the content of budget_data.csv in the variable csvreader
-csvpath=os.path.join('/Users/ioanahancu/python-challenge/PyBank/Resources/budget_data.csv')
+csvpath=os.path.join('.','budget_data.csv')
 
 month = []
 revenue = []
