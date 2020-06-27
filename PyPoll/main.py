@@ -3,27 +3,57 @@ import csv
 
 #Store the contents of election_data.csv in the variable csvpath
 csvpath=os.path.join('/Users/ioanahancu/python-challenge/PyPoll/Resources/election_data.csv')
+votes = []
+county = []
+candidates = []
+khan = []
+correy = []
+li = []
+otooley = []
+khan_votes=[]
+correy_votes=[]
+li_votes=[]
+otooley=[]
+
 with open(csvpath)as csvfile:
-  csvreader = csv.reader(csvfile, delimiter=',')
-  print(csvreader)
-  csv_header =next(csvreader)
+    csvreader = csv.reader(csvfile, delimiter=',')
+    print(csvreader)
+    csv_header =next(csvreader)
 
-print(f"Header: {csv_header}")
+    print(f"Header: {csv_header}")
 
-# Declare Variables 
-total_votes = 0 
-khan_votes = 0
-correy_votes = 0
-li_votes = 0
-otooley_votes = 0
+    for row in csvreader:
+        votes.append(int(row[0]))
+        county.append(row[1])
+        candidates.append(row[2])
+#calculate total votes
+total_votes = (len(votes))
+print(total_votes)
 
-#for row in csvreader:
-  #print(row[0])
+#calculate votes per candidate
+for candidate in candidates:
+        if candidate == "Khan":
+            khan.append(row[2])
+            khan_votes = len(khan)
+        elif candidate == "Correy":
+            correy.append(row[2])
+            correy_votes= len(correy)
+        elif candidate == "Li":
+             li.append(row[2])
+             li_votes = len(li)
+        else:
+            otooley.append(row[2])
+            otooley_votes =len(otooley)
 
-#function += retrieved from: https://www.codecademy.com/forum_questions/555729a8d3292f6e7d000655
-#use it to count the total votes
-#total_votes +=1
-#print(total_votes)
+        print(khan_votes)
+        print(correy_votes)
+        print(li_votes)
+        print(otooley_votes)
+
+
+
+
+
 
 #column 2 contains the candidates, so we can loop through it and count the total votes for each candidate
 #if row[2] == "Khan": 

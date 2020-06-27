@@ -4,27 +4,76 @@ import csv
 #Open and store the content of budget_data.csv in the variable csvreader
 csvpath=os.path.join('/Users/ioanahancu/python-challenge/PyBank/Resources/budget_data.csv')
 
-total_months = []
-total_profit = []
-monthly_profit_change = []
+month = []
+revenue = []
+revenue_change = []
+monthly_change = []
 
 with open(csvpath)as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
-    print(csvreader)
-    csv_header =next(csvreader)
-    print(f"Header: {csv_header}")  
-
-for row in csvreader:
-    print(row[0])
+		csvreader = csv.reader(csvfile, delimiter=',')
+		print(csvreader)
+		csv_header =next(csvreader)
+		print(f"Header: {csv_header}")
 
 #Append month and profit/loss to their corresponding lists
-#for row in csvreader:
-    #total_months.append(row[0])
-    #total_profit.append(row[1])
+		for row in csvreader:
+			month.append(row[0])
+			revenue.append(row[1])
+			print(len(month))
 
-# Take the difference between two months and append to monthly profit change
-#for i in range(1, len(total_profit)):
-    #monthly_profit_change.append(total_profit[i+1]-total_profit[i])
+
+# Take the difference between two months and append to monthly change in profit
+		i= 0
+		for i in range(len(revenue) - 1):
+			profit_loss = int(revenue[i+1]) - int(revenue[i])
+
+# append profit_loss
+			revenue_change.append(profit_loss)
+
+total_revenue_change= sum(revenue_change)
+#print(revenue_change) #to check that the calculation work
+monthly_change = total_revenue_change/ len(revenue_change)
+#print(monthly_change) #to check
+
+#calculate greatest increase
+profit_increase = max(revenue_change)
+print(profit_increase)
+k = revenue_change.index(profit_increase)
+month_increase = month[k+1]
+
+#calculate greatest decrease
+profit_decrease = min(revenue_change)
+print(profit_decrease)
+j = revenue_change.index(profit_decrease)
+month_decrease = month[j+1]
+
+#Print Statements
+print(f'Financial Analysis'+'\n')
+print(f'----------------------------'+'\n')
+print("Total number of months: " + str(len(month)))
+
+print("Total Revenue in period: $ " + str(total_revenue_change))
+      
+print("Average monthly change in Revenue : $" + str(monthly_change))
+
+print(f"Greatest Increase in Profits: {month_increase} (${profit_increase})")
+
+print(f"Greatest Decrease in Profits: {month_decrease} (${profit_decrease})")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Obtain the max and min of the the montly profit change list
 #max_increase_value = max(monthly_profit_change)
