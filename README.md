@@ -1,2 +1,2 @@
-# repository for bootcamp week 3 python homework
+# repository for bootcamp homework
  
